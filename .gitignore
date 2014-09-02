@@ -1,0 +1,4 @@
+# exclude pdfs and csv
+
+ *.pdf
+ *.csv
