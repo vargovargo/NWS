@@ -14,25 +14,25 @@ NWS <- read.csv("~/Box Documents/work/MODISsummer/paper/analysis/long_NWS.csv", 
 #-----------------------------------------------
 
 
-# # stations75 <- read.csv("~/Box Documents/work/MODISsummer/paper/analysis/1Day105HI.csv", header=T) 
+## stations75 <- read.csv("~/Box Documents/work/MODISsummer/paper/analysis/1Day105HI.csv", header=T) 
 
-# working <- merge(NWS, stations75, by=c("Day", "Month", "Year", "County"), all.x=TRUE)
+#  working <- merge(NWS, stations75, by=c("Day", "Month", "Year", "County"), all.x=TRUE)
 
-# workclean <- na.omit(working)
+#  workclean <- na.omit(working)
 
-# truepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 1) 
-# falseneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 1) 
-# trueneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 0) 
-# falsepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 0) 
+#  truepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 1) 
+#  falseneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 1) 
+#  trueneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 0) 
+#  falsepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 0) 
 
-# workclean$test <- ""
+#  workclean$test <- ""
 
-# workclean[truepos,11] <-"truepositive"
-# workclean[trueneg,11] <-"truenegative"
-# workclean[falsepos,11] <-"falsepositive"
-# workclean[falseneg,11] <-"falsenegative"
+#  workclean[truepos,11] <-"truepositive"
+#  workclean[trueneg,11] <-"truenegative"
+#  workclean[falsepos,11] <-"falsepositive"
+#  workclean[falseneg,11] <-"falsenegative"
 
-# #write.csv(workclean)
+## write.csv(workclean)
 
 
 #-----------------------------------------------
