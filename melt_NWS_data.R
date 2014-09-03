@@ -1,105 +1,79 @@
-NWS <- read.csv("~/Box Documents/work/MODISsummer/paper/analysis/5county_advisories_alldays.csv", header=T) 
-
-long_NWS <- melt(NWS, id=c("date"))
-
-write.csv(long_NWS, "~/Box Documents/work/MODISsummer/ATL_text/Non-Precip_Weather/long_NWS.csv", row.names=FALSE, na="")
-
 library(reshape2)
 library(ggplot2)
 
+allAdvisories <- read.csv("./long_NWS.csv", header=T)
+#check County names 
+unique(allAdvisories[,"County"])
 
-NWS <- read.csv("~/Box Documents/work/MODISsummer/paper/analysis/long_NWS.csv", header=T) 
+allStations <- read.csv("./2Day105HI.csv", header=T)
+allStationsClean <- allStations[which(allStations$County != "Douglas" & allStations$County != ""),]
 
-
-#-----------------------------------------------
-
-
-## stations75 <- read.csv("~/Box Documents/work/MODISsummer/paper/analysis/1Day105HI.csv", header=T) 
-
-#  working <- merge(NWS, stations75, by=c("Day", "Month", "Year", "County"), all.x=TRUE)
-
-#  workclean <- na.omit(working)
-
-#  truepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 1) 
-#  falseneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 1) 
-#  trueneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 0) 
-#  falsepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 0) 
-
-#  workclean$test <- ""
-
-#  workclean[truepos,11] <-"truepositive"
-#  workclean[trueneg,11] <-"truenegative"
-#  workclean[falsepos,11] <-"falsepositive"
-#  workclean[falseneg,11] <-"falsenegative"
-
-## write.csv(workclean)
+#check data cleaning step
+unique(allStationsClean[,"County"])
 
 
-#-----------------------------------------------
+
+#write.csv(unique(read.csv("./stations_4_unique.csv", header=T)), "./uniqStations.csv")
+#---------------Check agreement of stations and NWS-------------------------------
+
+stationsNWS <- merge(allStationsClean, allAdvisories, by=c("Day", "Month", "Year", "County"), all.x=TRUE)
+stationsNWS2011On <- stationsNWS[which(stationsNWS$Year > 2011 & stationsNWS$Year < 2013),]
 
 
-stations75 <- read.csv("~/Box Documents/work/MODISsummer/paper/analysis/2Day105HI.csv", header=T) 
+stationsNWS2011OnClean <- na.omit(stationsNWS2011On)
 
-working <- merge(NWS, stations75, by=c("Day", "Month", "Year", "County"), all.x=TRUE)
-working <- working[which(working$Year > 2011 & working$Year < 2013),]
+truepos <- which(stationsNWS2011OnClean$NWSadvisory == 1 & stationsNWS2011OnClean$Heat_Day == 1) 
+falseneg <- which(stationsNWS2011OnClean$NWSadvisory == 0 & stationsNWS2011OnClean$Heat_Day == 1) 
+trueneg <- which(stationsNWS2011OnClean$NWSadvisory == 0 & stationsNWS2011OnClean$Heat_Day == 0) 
+falsepos <- which(stationsNWS2011OnClean$NWSadvisory == 1 & stationsNWS2011OnClean$Heat_Day == 0) 
 
+stationsNWS2011OnClean$test <- ""
 
-workclean <- na.omit(working)
-
-truepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 1) 
-falseneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 1) 
-trueneg <- which(workclean$NWSadvisory == 0 & workclean$Heat_Day == 0) 
-falsepos <- which(workclean$NWSadvisory == 1 & workclean$Heat_Day == 0) 
-
-workclean$test <- ""
-
-workclean[truepos,12] <-"truepositive"
-workclean[trueneg,12] <-"truenegative"
-workclean[falsepos,12] <-"falsepositive"
-workclean[falseneg,12] <-"falsenegative"
+stationsNWS2011OnClean[truepos,"test"] <-"truepositive"
+stationsNWS2011OnClean[trueneg,"test"] <-"truenegative"
+stationsNWS2011OnClean[falsepos,"test"] <-"falsepositive"
+stationsNWS2011OnClean[falseneg,"test"] <-"falsenegative"
 
 
-#-----------------------------------------------
-~/Box Documents
+#---------------Calculate Sensitivity/Specificity--------------------------------
 
-imperv <- read.csv("~/Box Documents/work/MODISsummer/ATL_imperv_GIS/station_imerv_results.csv", header=T) 
+#imperv <- read.csv("~/Box Sync/work/MODISsummer/ATL_imperv_GIS/station_imerv_results.csv", header=T) 
 
+stationTestCounts <- dcast(stationsNWS2011OnClean, County + Station ~test, length)
+stationTestCounts$sensitivity <- stationTestCounts$truepos /(stationTestCounts$truepos+stationTestCounts$falseneg)
+stationTestCounts$specificity <- stationTestCounts$trueneg /(stationTestCounts$trueneg+stationTestCounts$falsepos)
+stationTestCounts$obs <- stationTestCounts$truepos + stationTestCounts$falsepos + stationTestCounts$trueneg + stationTestCounts$falseneg
 
-stationcounts <- dcast(workclean, County + Station ~test, length)
-stationcounts$sensitivity <- stationcounts$truepos /(stationcounts$truepos+stationcounts$falseneg)
-stationcounts$specificity <- stationcounts$trueneg /(stationcounts$trueneg+stationcounts$falsepos)
-stationcounts$obs <- stationcounts$truepos + stationcounts$falsepos + stationcounts$trueneg + stationcounts$falseneg
+#stationTestCounts <- merge(stationTestCounts, imperv, by="Station", all.x=TRUE, all.y=FALSE)
+#write.csv(stationTestCounts, "~/Box Sync/work/MODISsummer/paper/analysis/stationTestCounts.csv", row.names=FALSE, na="")
 
-stationcounts <- merge(stationcounts, imperv, by="Station", all.x=TRUE, all.y=FALSE)
-#write.csv(stationcounts, "~/Box Documents/work/MODISsummer/paper/analysis/stationcounts.csv", row.names=FALSE, na="")
-
-ggplot(stationcounts, aes(x=X500m, y=sensitivity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Sensitivity") + ggtitle("Station Sensitivity (Station = gold standard)") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
+ggplot(stationTestCounts, aes(x=X500m, y=sensitivity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Sensitivity") + ggtitle("Station Sensitivity (Station = gold standard)") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
 
 
 #------------------------percent developed---------------------------------------
-ggplot(stationcounts, aes(x=pct_developed, y=sensitivity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Sensitivity") + ggtitle("Station Sensitivity (Station = gold standard)") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
+ggplot(stationTestCounts, aes(x=pct_developed, y=sensitivity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Sensitivity") + ggtitle("Station Sensitivity (Station = gold standard)") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
 quartz()
-ggplot(stationcounts, aes(x=pct_developed, y=specificity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Sensitivity") + ggtitle("Station Sensitivity (Station = gold standard)") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
+ggplot(stationTestCounts, aes(x=pct_developed, y=specificity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Sensitivity") + ggtitle("Station Sensitivity (Station = gold standard)") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
 
-
-quartz()
-ggplot(stationcounts, aes(x=Long, y=Lat, size=obs, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Station observations and % developed") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
 
 quartz()
-ggplot(stationcounts, aes(x=Long, y=Lat, size=2, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Station observations and sensitivity 2012") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
+ggplot(stationsNWS2011OnClean, aes(x=Long, y=Lat, size=obs, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Station observations and % developed") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
+
+quartz()
+ggplot(stationsNWS2011OnClean, aes(x=Long, y=Lat, size=2, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Station observations and sensitivity 2012") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
 
 
-ggplot(stationcounts, aes(x=X500m, y=specificity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Specificity") + ggtitle("Station Specificity (Station = gold standard)") + theme(legend.position="bottom")#+ facet_grid(.~Year)
+ggplot(stationsNWS2011OnClean, aes(x=X500m, y=specificity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("% impervious") + ylab("Specificity") + ggtitle("Station Specificity (Station = gold standard)") + theme(legend.position="bottom")#+ facet_grid(.~Year)
 
 
 #-----------------------------------------------
 
 
-countycounts <- dcast(workclean, County ~test, length)
+countyCounts <- dcast(stationsNWS2011OnClean, County ~test, length)
 
-countycounts$sensitivity <- countycounts$truepos /(countycounts$truepos+countycounts$falseneg)
-countycounts$specificity <- countycounts$trueneg /(countycounts$trueneg+countycounts$falsepos)
+countyCounts$sensitivity <- countyCounts$truepos /(countyCounts$truepos+countyCounts$falseneg)
+countyCounts$specificity <- countyCounts$trueneg /(countyCounts$trueneg+countyCounts$falsepos)
 
 
-write.csv(countycounts, "~/Box Documents/work/MODISsummer/paper/analysis/countycounts.csv", row.names=FALSE, na="")
+write.csv(countyCounts, "./countycounts.csv", row.names=FALSE, na="")
 
