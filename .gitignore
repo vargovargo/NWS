@@ -2,3 +2,6 @@
 
  *.pdf
  *.csv
+ *.bst
+ *.cls
+ *.txt
