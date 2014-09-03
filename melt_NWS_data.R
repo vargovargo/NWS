@@ -60,17 +60,21 @@ stationTestCounts$obs <- stationTestCounts$truepos + stationTestCounts$falsepos 
 # ggplot(stationTestCounts, aes(x=Long, y=Lat, size=obs, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Station observations and % developed") + theme(legend.position="bottom")# + geom_smooth(method = "lm", se=TRUE)# + facet_grid(.~County)
 # 
 quartz()
-ggplot(stationTestCounts, aes(x=Long, y=Lat, size=2, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Station observations and sensitivity 2012") + theme(legend.position="bottom") + facet_grid(Metro.x ~ ., scales="free")
-ggplot(stationTestCounts, aes(x=Long, y=Lat, size=2, color=specificity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Station observations and sensitivity 2012") + theme(legend.position="bottom") + facet_grid(Metro.x ~ ., scales="free")
+par(mfrow=c(2,2))
+ggplot(subset(stationTestCounts, Metro.x == "Atlanta"), aes(x=Long, y=Lat, size=obs, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Atlanta station observations and sensitivity 2008-2012") + theme(legend.position="bottom")
+ggplot(subset(stationTestCounts, Metro.x == "Atlanta"), aes(x=Long, y=Lat, size=obs, color=specificity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Atlanta station observations and specificity 2008-2012") + theme(legend.position="bottom") 
+ggplot(subset(stationTestCounts, Metro.x == "Chicago"), aes(x=Long, y=Lat, size=obs, color=sensitivity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Chicago station observations and sensitivity 2008-2012") + theme(legend.position="bottom")
+ggplot(subset(stationTestCounts, Metro.x == "Chicago"), aes(x=Long, y=Lat, size=obs, color=specificity)) + geom_point(stat="identity") + xlab("Long") + ylab("Lat") + ggtitle("Chicago station observations and specificity 2008-2012") + theme(legend.position="bottom") 
 
 
 ggplot(stationTestCounts, aes(x=sensitivity, y=specificity, color=factor(County), size=obs)) + geom_point(stat="identity") + xlab("Sensitivity") + ylab("Specificity") + ggtitle("NWS Accuracy 2008-2012 (Station = gold standard)") + theme(legend.position="bottom")+ facet_grid(. ~ Metro.x)
 
+write.csv(stationTestCounts, "./stationTestsForGIS.csv", row.names=FALSE, na="")
 
 #-----------------------------------------------
 
 
-countyCounts <- dcast(stationsNWS2011OnClean, County ~test, length)
+countyCounts <- dcast(stationTestCounts, County ~test, length)
 
 countyCounts$sensitivity <- countyCounts$truepos /(countyCounts$truepos+countyCounts$falseneg)
 countyCounts$specificity <- countyCounts$trueneg /(countyCounts$trueneg+countyCounts$falsepos)
