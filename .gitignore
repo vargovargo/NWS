@@ -5,3 +5,9 @@
  *.bst
  *.cls
  *.txt
+ *.gz
+ *.aux
+ *.bbl
+ *.log
+ *.blg
+
