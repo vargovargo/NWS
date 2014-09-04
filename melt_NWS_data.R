@@ -1,9 +1,25 @@
 library(reshape2)
 library(ggplot2)
+library(scales)
+library(plyr)
+
+
+setwd("~/Box Sync/work/MODISsummer/paper/analysis/")
 
 allAdvisories <- read.csv("./long_NWS.csv", header=T)
+
+allAdvisories$date <- as.Date(allAdvisories$date, "%m/%d/%Y")
 #check County names 
-unique(allAdvisories[,"County"])
+counties <- unique(allAdvisories[,"County"])
+
+#plot advisories over all years
+ggplot(allAdvisories, aes(x=date, y=factor(NWSadvisory), color=factor(NWSadvisory)))+geom_point(stat="identity") + scale_x_date(labels = date_format("%m/%y"), breaks="1 year", minor_breaks="1 month") +  scale_color_manual(values = c("0" = "blue", "1" = "red")) + theme(legend.position="bottom")+ facet_grid(County ~ .)
+
+NWSCountyCrossTab <- dcast(allAdvisories, County ~ date, sum, value.var="NWSadvisory")
+NWSCountyCrossTab[NWSCountyCrossTab == 0] <- -1
+write.csv(NWSCountyCrossTab, "./AdvisoriesForXL.csv")
+
+
 
 allStations <- read.csv("./2Day105HI.csv", header=T)
 allStationsClean <- allStations[which(allStations$County != "Douglas" & allStations$County != ""),]
@@ -17,8 +33,7 @@ unique(allStationsClean[,"County"])
 #---------------Check agreement of stations and NWS-------------------------------
 
 stationsNWS <- merge(allStationsClean, allAdvisories, by=c("Day", "Month", "Year", "County"), all.x=TRUE)
-stationsNWS2011On <- stationsNWS[which(stationsNWS$Year > 2008 & stationsNWS$Year < 2013),]
-
+stationsNWS2011On <- stationsNWS[which(stationsNWS$Year > 2005 & stationsNWS$Year < 2013),]
 
 stationsNWS2011OnClean <- na.omit(stationsNWS2011On)
 
@@ -71,14 +86,23 @@ ggplot(stationTestCounts, aes(x=sensitivity, y=specificity, color=factor(County)
 
 write.csv(stationTestCounts, "./stationTestsForGIS.csv", row.names=FALSE, na="")
 
-#-----------------------------------------------
+#----------------calculate County stats-------------------------------
 
-
-countyCounts <- dcast(stationTestCounts, County ~test, length)
+countyCounts <- dcast(stationsNWS2011OnClean, County ~test, length)
 
 countyCounts$sensitivity <- countyCounts$truepos /(countyCounts$truepos+countyCounts$falseneg)
 countyCounts$specificity <- countyCounts$trueneg /(countyCounts$trueneg+countyCounts$falsepos)
 
 
 write.csv(countyCounts, "./countycounts.csv", row.names=FALSE, na="")
+
+#------------------create alldays graphs-------------------
+allDays <- read.csv("./all_days.csv", header=T)
+allDays$date <- as.Date(allDays$date, "%m/%d/%Y")
+
+
+stationDays <-expand.grid(Stations=unique(stationsNWS2011OnClean$Station), Days=unique(allDays$date), stringsAsFactors=T)
+Funcfinal$total[is.na(Funcfinal$total)]<-0
+
+
 
