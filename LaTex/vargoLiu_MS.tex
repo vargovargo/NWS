@@ -42,7 +42,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Citations should be of the form ``author year''  not ``author, year''
-\bibpunct{(}{)}{;}{a}{}{,}
+%\bibpunct{(}{)}{;}{a}{}{,}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -50,7 +50,7 @@
 
 %% May use \\ to break lines in title:
 
-\title{Turning up the Heat: improving the Specificity of Heat Warning Systems}
+\title{Turning up the Heat: Improving the Specificity of Heat Warning Systems}
 
 %%% Enter authors' names, as you see in this example:
 %%% Use \correspondingauthor{} and \thanks{Current Affiliation:...}
@@ -82,8 +82,13 @@
     %\extraauthor{Extra Author}
     %\extraaffil{Affiliation, City, State/Province, Country}
 
+
+\extraauthor{Qingyang Xiao}
+\extraaffil{Emory University, Rollins School of Public Health}
+
 \extraauthor{Yang Liu}
 \extraaffil{Emory University, Rollins School of Public Health}
+
 
 %% May repeat for a additional authors/affiliations:
 
@@ -99,7 +104,7 @@
 % For BAMS authors only: If your article requires a Capsule Summary, please place the capsule text at the end of your abstract
 % and identify it as the capsule. Example: This is the end of the abstract. (Capsule Summary) This is the capsule summary. 
 
-\abstract{Enter the text of your abstract here.}
+\abstract{fdsf}
 
 \begin{document}
 
@@ -139,8 +144,9 @@
 \section{Introduction}
 Motivation The frequency, duration, areal coverage, and intensity of
 heat waves are expected to increase for most populated places because of
-global climate change. Such events have caused major episodic mortality Ð including an estimated 70,000 premature(?) deaths in Europe 2003 and
-20,000(?) in Russia 2010. In many places, early warning systems are a
+global climate change. Such events have caused major episodic mortality Ð 
+including an estimated 70,000 excess deaths in Europe 2003 \citep{Robine2008} and
+more than 55,000 in Russia 2010 \citep{Guha2011,Revich2011}. In many places, early warning systems are a
 key, if not the primary, component of measures for avoiding heat related
 deaths and illness. In the United States the National Weather Service
 (NWS) issues such warnings. In addition to shortcomings of the warning
@@ -162,22 +168,22 @@ replicate National Weather Service heat warnings.
 The relationship between heat and health is well-understood,
 and known to change over time and by location and population.  The
 expectations for future changes to climate are directly related to
-expected health impacts \cite{Kinney2008}. The relationship between heat and
+expected health impacts \citep{Kinney2008}. The relationship between heat and
 health has generally been investigated in two distinct ways: first, by
 investigating statistical extremes and, second, by examining specific
 events. Several studies using large population data sets and several
 summers of data demonstrate a positive relationship between temperature
-and excess all-cause mortality \cite{Medina2007, Basu2002, Curriero2002} with varying
+and excess all-cause mortality \citep{Medina2007, Basu2002, Curriero2002} with varying
 thresholds based on region.
 
 Heat response planning was only formalized in relatively recent efforts,
 primarily in cities like Chicago and Philadelphia following deadly heat
-waves, in 1995 and ______ respectively {CITE}. The events led to greater
+waves, in 1995 and 1993 respectively \citep{Ebi2004,}. The events led to greater
 attention on individual and population level factors affecting heat
 vulnerability. These include age, social isolation, housing type,
 income, and ethnicity. Resulting efforts including vulnerable population
 censuses and door-to-door visits during heat events have been shown to
-be successful in reducing the related excess mortality \cite{Li2012}. The
+be successful in reducing the related excess mortality \citep{Li2012}. The
 increased prevalence of energy-intensive adaptation strategies, most
 notably, air conditioning is another reason for declining heat-related
 mortality in the US in spite of increased frequency of such events
@@ -328,7 +334,7 @@ Start acknowledgments here.
 % REFERENCES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Make your BibTeX bibliography by using these commands:
-\bibliographystyle{ametsoc2014}
+\bibliographystyle{ieeetr}
 \bibliography{vargoLiu_MS}
 
 
@@ -366,7 +372,7 @@ Start acknowledgments here.
 %\begin{figure}[t]
 %  \noindent\includegraphics[width=19pc,angle=0]{figure01.pdf}\\
 %  \caption{Enter the caption for your figure here.  Repeat as
-%  necessary for each of your figures. Figure from \protect\cite{Knutti2008}.}\label{f1}
+%  necessary for each of your figures. Figure from \protect\citep{Knutti2008}.}\label{f1}
 %\end{figure}
 
 \end{document}
