@@ -1,0 +1,39 @@
+On Error Resume Next
+
+For Y = 2013 To 2013   'year
+
+	if ((Y = 2004) or (Y = 2008) or (Y = 2012)) Then  'EoY: End of Year
+		EoY = 366 
+	Else
+		EoY = 365 
+	End If
+	
+	doy =1 
+	Do While doy < EoY +1
+		Set ie = CreateObject("InternetExplorer.Application") 
+		Set fso = CreateObject("Scripting.FileSystemObject") 
+		Site = "KGAMOUNT2"
+		set f1=fso.OpenTextFile(Site & "_" & Y & ".txt",8,true)
+		Address = "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=" & Site &"&year=" & Y & "&month=1&day=" & doy &"&format=1"
+		ie.Navigate Address 
+		while ie.busy or ie.readystate<>4 
+		Wend                          'the complete state of ie is 4	
+		
+		If left(ie.document.body.innertext,4) = "Time" Then   'Loading page success
+			f1.write ie.document.body.innertext & chr(13) 
+		End If
+		
+		If left(ie.document.body.innertext,4) <> "Time" Then   'Loading page failed
+			doy = doy -1
+		End If
+		
+		ie.quit
+		f1.close
+		
+		doy = doy + 1
+
+	Loop
+
+	set WshShell = WScript.CreateObject("WScript.Shell")
+	WScript.Sleep 2000	             'Sleep for 2 second, for releasing the memory								
+Next
