@@ -7,26 +7,27 @@ library(plyr)
 setwd("~/Box Sync/work/MODISsummer/paper/analysis/")
 
 allAdvisories <- read.csv("./long_NWS.csv", header=T)
-
 allAdvisories$date <- as.Date(allAdvisories$date, "%m/%d/%Y")
 #check County names 
 counties <- unique(allAdvisories[,"County"])
 
+allAdvisories$metroCounty <- paste(allAdvisories$Metro,allAdvisories$County, sep="_")
+
 #plot advisories over all years
-ggplot(allAdvisories, aes(x=date, y=factor(NWSadvisory), color=factor(NWSadvisory)))+geom_point(stat="identity") + scale_x_date(labels = date_format("%m/%y"), breaks="1 year", minor_breaks="1 month") +  scale_color_manual(values = c("0" = "blue", "1" = "red")) + theme(legend.position="bottom")+ facet_grid(County ~ .)
+ggplot(subset(allAdvisories, NWSadvisory ==1), aes(x=date, y=factor(NWSadvisory), color=factor(NWSadvisory))) + geom_point(stat="identity", alpha=0.5) + scale_x_date(labels = date_format("%m/%y"), breaks="1 year", minor_breaks="1 month") + scale_color_manual(values = c("0" = "blue", "1" = "red")) + theme(legend.position="bottom") + facet_grid(metroCounty ~ .) + theme(strip.text.x = element_text(size = 3))
 
 NWSCountyCrossTab <- dcast(allAdvisories, County ~ date, sum, value.var="NWSadvisory")
 NWSCountyCrossTab[NWSCountyCrossTab == 0] <- -1
 write.csv(NWSCountyCrossTab, "./AdvisoriesForXL.csv")
 
 
-
 allStations <- read.csv("./2Day105HI.csv", header=T)
 allStationsClean <- allStations[which(allStations$County != "Douglas" & allStations$County != ""),]
-
 #check data cleaning step
-unique(allStationsClean[,"County"])
 
+write.csv(unique(allStationsClean[,c("Metro","County","Station", "Lat","Long")]), "./stationMaster.csv", row.names=F)
+
+airportStations <- allStations[grep("Airport",allStations$Station),]
 
 
 #write.csv(unique(read.csv("./stations_4_unique.csv", header=T)), "./uniqStations.csv")
