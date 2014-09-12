@@ -1,9 +1,0 @@
-\begin{figure}[t]
-%\begin{figure}[tbh]
- \noindent\includegraphics[width=39pc,angle=0]{../../images/metros.pdf}
-%  \caption{The five-county study areas of Chicago (left) and Atlanta (right) are shown. Weather stations (including the airport stations) are shown with dotted circles.}
- % \label{fig:metros}
-%\end{figure}
-\end{figure}
-\efloatseparator
- 
