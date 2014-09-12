@@ -21,6 +21,9 @@
 % TWO-COLUMN JOURNAL PAGE LAYOUT---FOR AUTHOR USE ONLY
 %\documentclass[twocol]{ametsoc}
 \usepackage{hyperref}
+\usepackage{graphicx}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% To be entered only if twocol option is used
@@ -102,8 +105,6 @@
 % Enter your abstract here
 % Abstracts should not exceed 250 words in length!
 %
-% For BAMS authors only: If your article requires a Capsule Summary, please place the capsule text at the end of your abstract
-% and identify it as the capsule. Example: This is the end of the abstract. (Capsule Summary) This is the capsule summary. 
 
 \abstract{Deadly and dangerous heat waves are increasing with global climate change. Public forecasts and warnings are a primary public health strategy. However, several factors affecting heterogeneity in the urban thermal environment caused by land cover effects may impact the efficacy of such strategies. The emergence of more frequent and widely distributed sources of data on urban temperature provide the opportunity to investigate the specificity of the current National Weather Service Warnings, and to improve their accuracy and precision. In this work, temperatures from distributed public weather stations, NWS heat advisories and warnings, and land surface temperature imagery throughout two large metropolitan areas, Atlanta and Chicago, during the summers from 2006-2012 are considered. We first investigate the spatial variability in hazardous temperatures and agreement with advisories issued by the NWS and second examine the potential for a widely available thermal imagery product to replicate National Weather Service heat warnings.}
 
@@ -164,19 +165,19 @@ The most effective protection against hyperthermia in extreme weather is air con
 %lastly, on warning systems
 Warning systems are familiar for weather-related hazards including floods, tornados, winds, and severe storms. As an adaptation strategy they are important for quickly reaching large numbers of people at low cost, and providing targeted messaging that can help minimize damages. Heat warning systems have been shown to save lives during extreme heat \citep{Ebi2004}, but have received less attention than other natural disasters, in part, due to the fact that there is little aftermath (particularly property damage) to heat events. Even when the public is aware of warnings and climatic conditions, there is often far less awareness of what protective actions should be taken \citep{Sheridan2007}.  
 
-\subsection{The National Weather Service Warnings} \label{subsec:NWSWarnings}
+\subsection{The National Weather Service Warnings}\label{subsec:NWSWarnings}
 Currently the NWS uses four products based on the heat index (HI) -- a metric combining temperature and relative humidity to describe heat stress and discomfort -- to issue hazard notifications. Estimates of temperatures and humidity are predicted days in advance by NWS models which are currently available at a spatial resolution of 2.5 km. Regional offices of the NWS issues statements on the weather and potentially hazardous conditions 
 
 \begin{description} 
 \item[Excessive Heat Outlook]: may be issued 3 to 7 days prior to a heat episode requiring issuance of a Heat Warning, provided forecaster confidence is relatively high 
 \item[Excessive Heat Watch]: may be issued 12 to 48 hours prior to heat episode with a 50 percent chance or greater of daytime heat indices equal to or greater than 110 degrees for at least two consecutive days. 
-\item[Heat Advisory]: is issued in the first and/or second period when there is an 80 percent chance or greater of daytime heat indices equal to or greater than 105 degrees for at least two consecutive days. 
-\item[Excessive Heat Warning]: is issued in the first and/or second period when there is an 80 percent or greater of daytime heat indices equal to or greater than 110 degrees for at least two consecutive days. 
+\item[Heat Advisory]: is issued in the first and/or second period when there is an 80 percent chance or greater of daytime heat indices equal to or greater than 105 degrees (40.6 $^{\circ}$C) for at least two consecutive days. 
+\item[Excessive Heat Warning]: is issued in the first and/or second period when there is an 80 percent or greater of daytime heat indices equal to or greater than 110 degrees (43.3 $^{\circ}$C) for at least two consecutive days. 
 \end{description}
 
 Some of the main criticisms of the NWS's advisory guidelines relate to their uniformity for places across the country. In this respect they have not been representative of regional behavioral adaptation practices. This leads to warnings and advisories in some areas that may be issued too frequently or not frequently enough and do not represent actual weather-related risks for people. In both cases the issuances may lead to skepticism and neglect for the NWS notifications and decrease their effectiveness. In recent years some regions, like Chicago, have been more proactive about defining their own criteria not only for daytime high HI as well as nighttime low HI.
 
-Other concerns with the NWS advisories and warnings relate to urban areas where anthropogenic land cover modifications may elevate temperatures dangerously high even outside periods of regional extreme weather. Hazardous thermal conditions may also exist in small pockets of the urban landscape, which displays great variability in temperatures over space.  The current NWS notification system is based on large grid climate model and releases warnings and advisories at the county level. Because counties vary in size from place to place and may or may not wholly contain major population centers, the NWS products may fail to provide specific warnings and meaningful guidance for large numbers of people. Even if the products are accurately predicting regional hot weather, detail to the spatial distribution of temperatures within the region could improve warnings, individual adaptation measures, and larger response efforts.
+Other concerns with the NWS advisories and warnings relate to urban areas where anthropogenic land cover modifications may elevate temperatures dangerously high even outside periods of regional extreme weather. Hazardous thermal conditions may also exist in small pockets of the urban landscape, which displays great variability in temperatures over space.  The current NWS notification system is based on ???large grid??? climate model and releases warnings and advisories at the county level. Because counties vary in size from place to place and may or may not wholly contain major population centers, the NWS products may fail to provide specific warnings and meaningful guidance for large numbers of people. Even if the products are accurately predicting regional hot weather, detail to the spatial distribution of temperatures within the region could improve warnings, individual adaptation measures, and larger response efforts.
 
 Previous work has examined whether the HI values used are indicative of health threats by comparing HI values and mortality for various locations\citep{Kalkstein1989,Gaffen1998} Like the NWS products the HI values are often collected at a single site used as representative for the entire region. The NWS products themselves have also been compared with mortality and morbidity rates in places. The outcome of such studies has shown that HI can be a useful metric for informing decisions to protect public health in some locations. Alternatives based on weather classifications, like the Synoptic Spatial Classification (SSC), have also been examined for agreement with variability in mortality. The NWS system has also been compared against public perceptions of heat risk, a determining factor in whether precautionary actions are taken, and found to vary between regions and across age, income, gender, and ethnicities within regions \citep{Kalkstein2007}.
 
@@ -191,24 +192,34 @@ In this work we test two primary hypotheses. First, actual data from local stati
 
 \section{Methods}\label{section:methods}
 \subsection{Study Locations}\label{subsec:locations}
+This study focuses on two metropolitan areas in different climatic zones of the US: Atlanta, GA and Chicago, IL see Figure \ref{fig:metros}. Atlanta is an inland city in the southeastern US (centered near -84.37, 33.74). Atlanta's historic downtown and central city are located primarily in Fulton County. A portion of the city sits in Dekalb County east of Fulton. Three other counties (two north and one south of the city) were included in the analysis to cover the core of the metropolitan area: Clayton, Cobb, and Gwinnett. Chicago is in the midwest and sits on the large water body of Lake Michigan (centered near -87.63, 41.89).  The City of Chicago sits within Cook County. Four surrounding counties (DuPage to the west, Lake, IL to the north, Will to the southwest, and Lake, IN to the southeast were also included in the analysis of the Chicago Metro area. 
+
+
+%\begin{figure}[tbh]
+ \noindent\includegraphics[width=\textwidth]{../../images/metros.pdf}
+%  \caption{The five-county study areas of Chicago (left) and Atlanta (right) are shown. Weather stations (including the airport stations) are shown with dotted circles.}
+   \label{fig:metros}
+%\end{figure}
 
 
 \subsection{Heat Advisory Data}\label{subsec:NWSdata}
 As the historical record of heat warnings, we used NWS-issued Heat Advisories and Excessive Heat Warnings. Text records of the statements issued by NWS stations are archived and maintained by the National Oceanic and Atmospheric Administration's (NOAA) National Climatic Data Center (NCDC). The data are stored in the Hierarchical Data Storage System (HDSS), which includes a tape robotics system for data archived on tape. NCDC provides direct online access to these data though the HDSS Access System (HAS). Records for the NWS stations responsible for the Atlanta (KFFC - Peachtree City-Falcon, GA) and Chicago (KLOT - Lewis University, IL) Metropolitan Areas. Specifically, records heat advisories and excessive heat warnings are contained in Non-Precipitation Watches, Warnings, Advisories Bulletins (Bulletin ID WWUS7) and are accessible through the Service Records Retention System (SRRS) Text Products/Bulletin Selection interface (\url{http://has.ncdc.noaa.gov/pls/plhas/HAS.StationYearSelect}).
 
-Text files compilations of Bulletins were obtained for May 1- Sep 30 for the years 2006-2012. Individual text files were combed to identify mention of 'HEAT' and further examined to determine the day-county for which Heat Advisories or Excessive Heat Warnings applied. 
+Text files compilations of Bulletins were obtained for May 1- Sep 30 for the years 2006-2012. Individual text files were combed to identify mention of `HEAT' and further examined to determine the day-county for which Heat Advisories or Excessive Heat Warnings applied. 
 
 \subsection{Weather Station Data}\label{subsec:WUNDERdata}
-Measurements from weather stations serve as diagnostics of whether or not a hazardous heat event actually occurred on a given day and time. Two data sources were used for weather station data. First, temperature and humidity data from NCDC's Surface Data, Hourly Global (DS3505) data were obtained for Atlanta's Hartsfield Jackson (ID 13874) and Chicago's O'Hare (ID 94846). Second, weather station data archived through Weather Underground's network of widely distributed personal weather stations used for their BestForecast\textsuperscript{\textregistered} system. Stations within the ten counties involved in the study were queried for hourly temperature and humidity data back to May 2006. These data were collected for Atlanta in ???September 2013??? and for Chicago in ???October 2013???. Since the Weather Underground network is steadily expanding the exact set of stations used in this analysis may differ from the set, if assembled presently. 
+Measurements from weather stations serve as diagnostics of whether or not a hazardous heat event actually occurred for a given location and day. Two data sources were used for weather station data. First, temperature and humidity data from NCDC's Surface Data, Hourly Global (DS3505) data were obtained for Atlanta Hartsfield International Airport (USW00013874) and Chicago O'hare International Airport (USW00094846) from the NCDC website (\url{http://www.ncdc.noaa.gov/cdo-web/datasets/}). Second, weather station data archived through a network of personal weather stations were aggregated. Weather Underground, a commercial weather service provider, established the personal weather station network, which they use to inform their BestForecast\textsuperscript{\textregistered} system. The Weather Underground network allows individuals to share real-time weather information recorded by personal weather stations. The measurement intervals for stations range between 1 to 60 minutes and differ between stations. The historical record of meteorological parameters, temperature ($^{\circ}$F) and relative humidity (\%), from 47 stations in five counties in the Atlanta metro area and 152 stations in five counties in the Chicago metro area, were obtained from the Weather Underground website (\url{http://www.wunderground.com/}). Stations within the ten counties were queried for hourly temperature and humidity data back to May 2006. These data were collected for Atlanta in September 2013 and for Chicago in October 2013. Since the Weather Underground network is steadily expanding the exact set of stations used in this analysis may differ from the set, if assembled presently. 
 
-For each station's data the daily max heat index was calculated using ???NWS's guidance (\url{http://www.hpc.ncep.noaa.gov/html/heatindex_equation.shtml})??? and then compared to the standard criteria for declaring a Heat Advisory or Excessive Heat Warning. 
+To control the quality of data and eliminate outliers, for each city, we removed observations exceeding the range of mean $\pm$ five standard deviations. For each station, days with less than 16 hours valid hourly data and years with less than 75\% valid daily data were also excluded to eliminate possible sampling bias. The hourly average temperature and relative humidity values were processed to calculate the HI based on algorithms provided by the NWS (\url{http://www.hpc.ncep.noaa.gov/html/heatindex_equation.shtml}). To evaluate if stations experienced hazardous heat conditions, the NWS definition of Heat Advisory was used, such that if there are at least two consecutive days with at least one hourly HI greater than 105 $^{\circ}$F (40.6 $^{\circ}$C) in each day, these days will be marked as heat wave days.
 
 \subsection{Land Surface Temperature Imagery}\label{subsec:WUNDERdata}
-Measure ...
+The potential for regularly collected satellite data to provide more information on within-county variability in hazardous temperatures is examined through images from May through September 2006-2012 in the Atlanta and Chicago Metropolitan cores. 
 
 \section{Results}\label{section:results}
 \subsection{Data Descriptions}\label{subsec:descriptions}
-Station Data - Airport data were more reliable, less missing values, longer history
+Among records from the airport and Weather Underground weather stations There are 26,943 and 70,312 valid station-day data records in total for Atlanta and Chicago, respectively.  In total 1,172 and 1,499 station-days were marked as heat wave days.
+
+
 
 \subsection{Comparing NWS and Station Data}\label{subsec:hyp1}
 

@@ -3,7 +3,6 @@ library(ggplot2)
 library(scales)
 library(plyr)
 
-
 setwd("~/Box Sync/work/MODISsummer/paper/analysis/")
 
 allAdvisories <- read.csv("./long_NWS.csv", header=T)
@@ -14,12 +13,11 @@ counties <- unique(allAdvisories[,"County"])
 allAdvisories$metroCounty <- paste(allAdvisories$Metro,allAdvisories$County, sep="_")
 
 #plot advisories over all years
-ggplot(subset(allAdvisories, NWSadvisory ==1), aes(x=date, y=factor(NWSadvisory), color=factor(NWSadvisory))) + geom_point(stat="identity", alpha=0.5) + scale_x_date(labels = date_format("%m/%y"), breaks="1 year", minor_breaks="1 month") + scale_color_manual(values = c("0" = "blue", "1" = "red")) + theme(legend.position="bottom") + facet_grid(metroCounty ~ .) + theme(strip.text.x = element_text(size = 3))
+ggplot(subset(allAdvisories, NWSadvisory ==1), aes(x=date, y=factor(NWSadvisory), color=factor(NWSadvisory))) + geom_point(stat="identity", alpha=0.5) + scale_x_date(labels = date_format("%m/%y"), breaks="1 year", minor_breaks="1 month") + scale_color_manual(values = c("0" = "blue", "1" = "red")) + theme(legend.position="none") + facet_grid(metroCounty ~ .) + theme(strip.text.x = element_text(size = 3))
 
 NWSCountyCrossTab <- dcast(allAdvisories, County ~ date, sum, value.var="NWSadvisory")
 NWSCountyCrossTab[NWSCountyCrossTab == 0] <- -1
 write.csv(NWSCountyCrossTab, "./AdvisoriesForXL.csv")
-
 
 allStations <- read.csv("./2Day105HI.csv", header=T)
 allStationsClean <- allStations[which(allStations$County != "Douglas" & allStations$County != ""),]
@@ -27,9 +25,19 @@ allStationsClean <- allStations[which(allStations$County != "Douglas" & allStati
 
 write.csv(unique(allStationsClean[,c("Metro","County","Station", "Lat","Long")]), "./stationMaster.csv", row.names=F)
 
-airportStations <- allStations[grep("Airport",allStations$Station),]
+#airportStations <- allStations[grep("Airport",allStations$Station),]
+airportStations <- read.csv("./airportDetails.csv", header=T)
+airportStations$Date <- as.Date(airportStations$Date, "%m%d%Y")
 
+advisoriesAirportWeather <- merge(allAdvisories, airportStations, by.x=c("Day","Month","Year","Metro"), by.y=c("Day","Month","Year","Metro"))
 
+#plot advisories over all years
+p <- ggplot(subset(advisoriesAirportWeather, metroCounty == "Atlanta_Fulton" & Year == 2011 & max_HI != 0 | metroCounty == "Chicago_DuPage" & Year == 2011 & max_HI != 0)) + geom_point(aes(x=date, y=max_HI, color=factor(NWSadvisory), size=NWSadvisory, alpha=0.6), stat="identity") + geom_line(aes(x=date, y=max_HI, alpha=0.2)) + scale_x_date(labels = date_format("%m/%y"), breaks="1 month", minor_breaks="1 day") + scale_color_manual(values = c("0" = "blue", "1" = "red")) + theme(legend.position="none") + facet_grid(metroCounty ~ .) + theme(strip.text.x = element_text(size = 3))
+
+p <- ggplot(subset(advisoriesAirportWeather,  max_HI != 0))  + geom_point(aes(x=date, y=max_HI, color=factor(heat_2Day), size=heat_2Day, alpha=0.6), stat="identity")+ geom_line(aes(x=date, y=max_HI, alpha=0.2)) + scale_x_date(labels = date_format("%m/%y"), breaks="1 month", minor_breaks="1 day") + scale_color_manual(values = c("0" = "blue", "1" = "red")) + theme(legend.position="none") + facet_grid(metroCounty ~ .) + theme(strip.text.x = element_text(size = 3))
+p + geom_point(aes(x=date, y=max_RH, color=factor(NWSadvisory)),stat="identity") + geom_line(aes(x=date, y=max_RH, alpha=0.5)) 
+
+p
 #write.csv(unique(read.csv("./stations_4_unique.csv", header=T)), "./uniqStations.csv")
 #---------------Check agreement of stations and NWS-------------------------------
 
