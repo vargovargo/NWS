@@ -1,32 +1,421 @@
-Turning up the Heat: improving the Specificity of Heat Warning Systems
+%% Version 4.3.2, 25 August 2014
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template.tex --  LaTeX-based template for submissions to the 
+% American Meteorological Society
+%
+% Template developed by Amy Hendrickson, 2013, TeXnology Inc., 
+% amyh@texnology.com, http://www.texnology.com
+% following earlier work by Brian Papa, American Meteorological Society
+%
+% Email questions to latex@ametsoc.org.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Motivation
-The frequency, duration, areal coverage, and intensity of heat waves are expected to increase for most populated places because of global climate change. Such events have caused major episodic mortality – including an estimated 70,000 premature(?) deaths in Europe 2003 and 20,000(?) in Russia 2010. In many places, early warning systems are a key, if not the primary, component of measures for avoiding heat related deaths and illness. In the United States the National Weather Service (NWS) issues such warnings. In addition to shortcomings of the warning system mentioned previously, we are concerned with the spatial resolution and specificity of the issued warnings. The predictions for urban areas, in particular could be improved given that cities are typically hotter than surrounding areas, concentrate, people and demonstrate great variability in temperatures and adaptive capacities. 
+%% Start with one of the following:
+% DOUBLE-SPACED VERSION FOR SUBMISSION TO THE AMS
+\documentclass{ametsoc}
 
-In this work we consider temperatures from distributed weather stations, NWS heat advisories, and land surface temperature imagery throughout two large metropolitan areas, Atlanta and Chicago, during the summers from 2006-2012. We first investigate the spatial variability in hazardous temperatures and agreement with advisories issued by the NWS and second examine the potential for a widely available thermal imagery product to replicate National Weather Service heat warnings.
-
-Background
-The relationship between heat and health is well-understood, and known to change over time and by location and population.  The expectations for future changes to climate are directly related to expected health impacts {Kinney2008}. The relationship between heat and health has generally been investigated in two distinct ways: first, by investigating statistical extremes and, second, by examining specific events. Several studies using large population data sets and several summers of data demonstrate a positive relationship between temperature and excess all-cause mortality {Medina, Basu, Currerio} with varying thresholds based on region. 
-
-Heat response planning was only formalized in relatively recent efforts, primarily in cities like Chicago and Philadelphia following deadly heat waves, in 1995 and _____ respectively {CITE}. The events led to greater attention on individual and population level factors affecting heat vulnerability. These include age, social isolation, housing type, income, and ethnicity. Resulting efforts including vulnerable population censuses and door-to-door visits during heat events have been shown to be successful in reducing the related excess mortality {Li, et al.}. The increased prevalence of energy-intensive adaptation strategies, most notably, air conditioning is another reason for declining heat-related mortality in the US in spite of increased frequency of such events {DAVIS2003}. Finally, predictive weather models with increased accuracy and timeliness have improved the forecasting of hot air masses moving and settling over regions. 
-
-The potential for future extreme heat events that pose danger to human health is increasing with global climate change. As James Hansen and colleagues at NASA’s Goddard Institute for Space Studies put it, we have been loading the climate dice for the last 30 years, increasing the likelihood of meteorological events that used to occur once ever hundred years. Models and recent historical records echo this sentiment with data and the recent news that atmospheric CO2 concentrations passed 400ppm for the first time in 3 million years imply that these trends are likely to continue.  Early and accurate warnings are a crucial component for adapting to more frequent hazardous heat events.
-
-Currently the NWS uses four products based on the heat index (HI), a value combining temperature and relative humidity to describe heat stress and discomfort, to issue hazard notifications. Estimates of temperatures and humidity are predicted days in advance by National weather models which are now available at a spatial resolution of 2.5 km. 
-
-Excessive Heat Outlook: may be issued 3 to 7 days prior to a heat episode requiring issuance of a Heat Warning, provided forecaster confidence is relatively high
-Excessive Heat Watch: may be issued 12 to 48 hours prior to heat episode with a 50 percent chance or greater of daytime heat indices equal to or greater than 110 degrees for at least two consecutive days.
-Heat Advisory: is issued in the first and/or second period when there is an 80 percent chance or greater of daytime heat indices equal to or greater than 105 degrees for at least two consecutive days.
-Excessive Heat Warning: is issued in the first and/or second period when there is an 80 percent or greater of daytime heat indices equal to or greater than 110 degrees for at least two consecutive days.
-Some of the main criticisms of the NWS’s advisory guidelines relate to their uniformity for places across the country. In this respect they have not been representative of regional behavioral adaptation practices. This leads to warnings and advisories in some areas that may be issued too frequently or not frequently enough and do not represent actual weather-related risks for people. In both cases the issuances may lead to skepticism and neglect for the NWS notifications and decrease their effectiveness. In recent years some regions, like Chicago, have been more proactive about defining their own criteria not only for daytime high HI as well as nighttime low HI. 
+% TWO-COLUMN JOURNAL PAGE LAYOUT---FOR AUTHOR USE ONLY
+\documentclass
+\usepackage{hyperref}
+\usepackage{graphicx}
 
 
-Other concerns with the NWS advisories and warnings relate to urban areas where anthropogenic land cover modifications may elevate temperatures dangerously high even outside periods of regional extreme weather. Hazardous thermal conditions may also exist in small pockets of the urban landscape, which displays great variability in temperatures over space.  The current NWS notification system is based on large grid climate model and releases warnings and advisories at the county level. Because counties vary in size from place to place and may or may not wholly contain major population centers, the NWS products may fail to provide specific warnings and meaningful guidance for large numbers of people. Even if the products are accurately predicting regional hot weather, detail to the spatial distribution of temperatures within the region could improve warnings, individual adaptation measures, and larger response efforts. 
 
-Previous work has examined whether the HI values used are indicative of health threats by comparing HI values and mortality for various locations. Like the NWS products the HI values are often collected at a single site used as representative for the entire region. The NWS products themselves have also been compared with mortality and morbidity rates in places. The outcome of such studies has shown that HI can be a useful metric for informing decisions to protect public health in some locations. Alternatives based on weather classifications, like the Synoptic Spatial Classification (SSC), have also been examined for agreement with variability in mortality. The NWS system has also been compared against public perceptions of heat risk, a determining factor in whether precautionary actions are taken, and found to vary between regions and across age, income, gender, and ethnicities within regions. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% To be entered only if twocol option is used
 
-NEW DATA SOURCES
-In situ and remote sensors of temperature at or near the Earth’s surface offer the potential to improve the current warning system by increasing its specificity, particularly with regard to location. These data sources are new and numerous. They provide data with greater spatial coverage, frequent revisit times, and low cost. Distributed weather stations may have a shorter history than reliable long term stations used in climatological studies, but can effectively describe spatial patterns in temperatures across the urban landscape.  Imagery products like MODIS’s land surface temperature (LST) offer 1km spatial resolution data for areas around the globe twice daily. Such products are systematically processed to remove inconsistencies and distortions, as well as to calculate usable temperature outputs. While these data can not currently offer predictive weather information, they are nonetheless useful for analyzing and describing spatial variation and patterns which, when combined with predictive model currently in use, can improve information to the public and the adaptive response. 
+\journal{wcas}
 
-To our knowledge, we are the first to consider spatial variability in the NWS heat warning system inside of the regional or county boundary, and the first to compare the National advisory system to land surface temperatures 
+%  Please choose a journal abbreviation to use above from the following list:
+% 
+%   jamc     (Journal of Applied Meteorology and Climatology)
+%   jtech     (Journal of Atmospheric and Oceanic Technology)
+%   jhm      (Journal of Hydrometeorology)
+%   jpo     (Journal of Physical Oceanography)
+%   jas      (Journal of Atmospheric Sciences)	
+%   jcli      (Journal of Climate)
+%   mwr      (Monthly Weather Review)
+%   wcas      (Weather, Climate, and Society)
+%   waf       (Weather and Forecasting)
+%   bams (Bulletin of the American Meteorological Society)
+%   ei    (Earth Interactions)
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Citations should be of the form ``author year''  not ``author, year''
+%\bibpunct{(}{)}{;}{a}{}{,}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% To be entered by author:
+
+%% May use \\ to break lines in title:
+
+\title{The Performance of the National Weather Service Heat Warning System Against Ground Observations and Satellite Imagery}
+
+%%% Enter authors' names, as you see in this example:
+%%% Use \correspondingauthor{} and \thanks{Current Affiliation:...}
+%%% immediately following the appropriate author.
+%%%
+%%% Note that the \correspondingauthor{} command is NECESSARY.
+%%% The \thanks{} commands are OPTIONAL.
+
+    %\authors{Author One\correspondingauthor{Author One, 
+    % American Meteorological Society, 
+    % 45 Beacon St., Boston, MA 02108.}
+% and Author Two\thanks{Current affiliation: American Meteorological Society, 
+    % 45 Beacon St., Boston, MA 02108.}}
+
+\authors{Jason Vargo\correspondingauthor{Nelson Institute for Environmental Studies, University of Wisconsin-Madison, 1027 Medical Sciences Center, 1300 University Avenue, Madison, WI/USA}}
+
+%% Follow this form:
+    % \affiliation{American Meteorological Society, 
+    % Boston, Massachusetts.}
+
+\affiliation{Nelson Institute for Environmental Studies, University of Wisconsin-Madison}
+
+%% Follow this form:
+    %\email{latex@ametsoc.org}
+
+\email{javargo@wisc.edu}
+
+%% If appropriate, add additional authors, different affiliations:
+    %\extraauthor{Extra Author}
+    %\extraaffil{Affiliation, City, State/Province, Country}
+
+
+\extraauthor{Qingyang Xiao}
+\extraaffil{Emory University, Rollins School of Public Health}
+
+\extraauthor{Yang Liu}
+\extraaffil{Emory University, Rollins School of Public Health}
+
+
+%% May repeat for a additional authors/affiliations:
+
+%\extraauthor{}
+%\extraaffil{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ABSTRACT
+%
+% Enter your abstract here
+% Abstracts should not exceed 250 words in length!
+%
+
+\abstract{Deadly and dangerous heat waves are increasing with global climate change. Public forecasts and warnings are a primary public health strategy for dealing with such extreme weather events. However, several factors affecting heterogeneity in the urban thermal environment caused by land cover effects may impact the efficacy of such strategies. The emergence of more frequent and widely distributed sources of data on urban temperature provide the opportunity to investigate the specificity of the current National Weather Service Warnings, and to improve their accuracy and precision. In this work, temperatures from distributed public weather stations, NWS heat advisories and warnings, and land surface temperature imagery throughout two large metropolitan areas, Atlanta and Chicago, during the summers from 2006-2012 are considered. We first investigate the spatial variability in hazardous temperatures and agreement with advisories issued by the NWS and second examine the potential for a widely available thermal imagery product to replicate National Weather Service heat warnings.}
+
+\begin{document}
+
+%% Necessary!
+\maketitle{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MAIN BODY OF PAPER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+%% In all cases, if there is only one entry of this type within
+%% the higher level heading, use the star form: 
+%%
+% \section{Section title}
+% \subsection*{subsection}
+% text...
+% \section{Section title}
+
+%vs
+
+% \section{Section title}
+% \subsection{subsection one}
+% text...
+% \subsection{subsection two}
+% \section{Section title}
+
+%%%
+% \section{First primary heading}
+
+% \subsection{First secondary heading}
+
+% \subsubsection{First tertiary heading}
+
+% \paragraph{First quaternary heading}
+\section{Introduction}\label{section:intro}
+The potential for future extreme heat events that pose danger to human health is increasing with global climate change. As James Hansen and colleagues at NASA's Goddard Institute for Space Studies put it, we have been loading the climate dice for the last 30 years, increasing the likelihood of meteorological events that used to occur once ever hundred years\citep{Hansen}. Models and recent historical records echo this sentiment with data and the recent news that atmospheric CO\_{2} concentrations passed 400ppm for the first time in 3 million years imply that these trends are likely to continue.  Early and accurate warnings are a crucial component for adapting to more frequent hazardous heat events.
+
+In this work we consider temperatures from distributed public weather stations, NWS heat advisories and warnings, and land surface temperature imagery throughout two large metropolitan areas, Atlanta and Chicago, during the summers from 2006-2012. We first investigate the spatial variability in hazardous temperatures and agreement with advisories issued by the NWS and second examine the potential for a widely available thermal imagery product to replicate National Weather Service heat warnings.
+
+The frequency, duration, areal coverage, and intensity of heat waves are expected to increase for most populated places because of global climate change\citep{Meehl2004,Easterling2000}. Such events have caused major episodic mortality, including an estimated 70,000 excess deaths in Europe in 2003 \citep{Robine2008} and more than 55,000 in Russia during July and August of 2010 \citep{Guha2011,Revich2011}. Heat wave characteristics like intensity and seasonality are also changing in ways that increase their potential hazard to health. \citep{Habeeb}. In many places, early warning systems are a key, if not the primary, component of measures for avoiding heat related deaths and illness. In the United States the National Weather Service (NWS) issues these warnings. In this work we are concerned with the spatial resolution and specificity of the issued warnings. The predictions for urban areas, in particular, could be improved given that cities are typically hotter than surrounding areas, concentrate people, and demonstrate great variability in temperatures and population vulnerabilities.
+
+\subsection{Adaptation Strategies} \label{subsec:adaptationStrategies}
+The relationship between heat and health is well-understood and known to change over time as well as with location and population characteristics.  Future changes in climate will increase adverse health impacts \citep{Patz2005, Luber2008}. Adapting to changes in extreme heat events has largely followed three strategies: identifying vulnerable populations, and ensuring access to mechanical cooling (air conditioning), and implementing early warning systems \citep{EPA, Oneill}. 
+
+%outline three main strategies to address heat morbidity/mortality
+Several studies using large population datasets and several summers of data demonstrate a positive relationship between temperatures and excess all-cause mortality \citep{Medina2007, Basu2002, Curriero2002} on days that are abnormally warm compared to long-term summer weather for the region. Public warning systems for heat are targeted toward managing such events. Response activities for heat events have been institutionalized as part of relatively recent efforts in some cities,  including Chicago, Milwaukee, and Philadelphia following deadly heat waves in the early and mid 1990s \citep{Ebi2004,Weisskopf2002}. 
+
+%first, focusing on vulnerability
+Deadly heat events have led to greater attention on individual and population level factors affecting heat vulnerability \citep{Palecki2001}. These include age, social isolation, housing type, income, and ethnicity \citep{Browning2006,Naughton2002}. Adaptive capacity of individuals is also a key determinant in whether, and to what degree, hazards of climate change will result in adverse health effects \citep{Wilhelmi2010}. Understanding vulnerabilities to heat has led to efforts such as censuses of susceptible populations and door-to-door visits during heat events that have been shown to successfully reduce the related excess mortality \citep{Li2012, Weisskopf2002}. These approaches tend to be expensive to implement and rely on significant human resources for scaling up. 
+
+%second, focusing on AC
+The most effective protection against hyperthermia in extreme weather is air conditioning (AC). The increased prevalence of this technology is one reason for declining heat-related mortality in the US despite increasing frequency of heat events \citep{Davis2003}. However, reliance on energy-intensive adaptation strategies like AC results in greater energy use and the production of waste heat. Thus such adaptation measures produce positive feedbacks on global climate change and can exacerbate the urban heat island effect \citep{Salamanca2014}. 
+
+%lastly, on warning systems
+The general public are familiar with warning systems for weather-related hazards including floods, tornados, winds, and severe storms. As an adaptation strategy they are important for quickly reaching large numbers of people at low cost, and providing targeted messaging that can help minimize damages. Heat warning systems have been shown to save lives during extreme heat \citep{Ebi2004}, but heat waves have received less attention than other natural disasters, in part, due to the fact that there is less aftermath (particularly property damage). Even when the public is aware of warnings and climatic conditions, there is often far less awareness of what protective actions should be taken \citep{Sheridan2007}.  
+
+\subsection{The National Weather Service Warnings}\label{subsec:NWSWarnings}
+Currently the NWS uses four products based on the heat index (HI) -- a metric combining temperature and relative humidity to describe heat stress and discomfort -- to issue hazard notifications. Heat Index values are forecast for three to seven days out, and are based on an ensemble of model and human forecasts. Day three forecasts are based on gridded Model Output Statistics (MOS) temperature and dew point temperature forecasts. Forecasts on Days four through seven rely on minimum and maximum 24 hour temperatures and dew points at 00 and 12 UTC supplied by the Weather Prediction Center's (WPC) 5-km resolution grid data products. Probabilities for heat index values exceeding thresholds are also provided in the form of color filled displays.  Probabilities are informed by uncertainty information from an ensemble of modeled forecasts and follow a normal distribution around mean MOS or WPC values assessed on a regular 20-km resolution grid \citep{NWSsite}. 
+
+
+Regional offices of the NWS issue statements on the weather and potentially hazardous conditions: 
+
+\begin{description} 
+\item[Excessive Heat Outlook]: may be issued 3 to 7 days prior to a heat episode requiring issuance of a Heat Warning, provided forecaster confidence is relatively high 
+\item[Excessive Heat Watch]: may be issued 12 to 48 hours prior to heat episode with a 50 percent chance or greater of daytime heat indices equal to or greater than 110 degrees for at least two consecutive days. 
+\item[Heat Advisory]: is issued in the first and/or second period when there is an 80 percent chance or greater of daytime heat indices equal to or greater than 105 degrees (40.6 $^{\circ}$C) for at least two consecutive days. 
+\item[Excessive Heat Warning]: is issued in the first and/or second period when there is an 80 percent or greater of daytime heat indices equal to or greater than 110 degrees (43.3 $^{\circ}$C) for at least two consecutive days. 
+\end{description}
+
+Some of the main criticisms of the NWS's advisory guidelines relate to their uniformity for places across the country. In this respect they have not been representative of regional adaptation behaviors and practices. This leads to warnings and advisories in some areas that may be issued too frequently or not frequently enough and that misrepresent actual weather-related risks for people. In both cases the issuances may lead to skepticism and neglect for the NWS notifications and decrease their effectiveness. In recent years some regions, like Chicago, have been more proactive about defining their own criteria not only for daytime high HI as well as nighttime low HI.
+
+Other concerns with the NWS advisories and warnings relate to urban areas where anthropogenic land cover modifications may elevate temperatures dangerously high even outside periods of regional extreme weather. Hazardous thermal conditions may also exist in small pockets of the urban landscape, which displays great variability in temperatures over space.  The current NWS notification system is based low resolution forecast model grids - relative to heterogeneity in urban landscapes and surface temperatures - and releases warnings and advisories at the county level. Because counties vary in size from place to place and may not completely contain major population centers, the NWS products could fail to provide specific warnings and meaningful guidance for large numbers of people. Even if the products are accurately predicting regional hot weather, detail to the spatial distribution of temperatures within the region could improve warnings, individual adaptation measures, and larger response efforts.
+
+Previous work has examined whether the HI values used are indicative of health threats by comparing HI values and mortality for various locations\citep{Kalkstein1989} Like the NWS products the HI values are often collected at a single site and used to represent an entire region. Regionally-representative combinations of temperature and humidity have also been compared with mortality and morbidity rates in places \citep{Gaffen1998}. The outcome of such studies has shown that HI can be a useful metric for informing decisions to protect public health in some locations. Alternatives based on weather classifications, like the Synoptic Spatial Classification (SSC), have also been examined for agreement with variability in mortality. The NWS system was compared against public perceptions of heat risk, a determining factor in whether precautionary actions are taken, and found to vary between regions and across age, income, gender, and ethnicities within regions \citep{Kalkstein2007}.
+
+\subsection{New Data Sources} \label{subsec:newDataSources}
+In situ and remote sensors of temperature at or near the Earth's surface offer the potential to improve the current warning system by increasing its specificity, particularly with regard to location. These data sources are new and numerous. They provide data with greater spatial coverage, frequent revisit times, and low cost. Distributed weather stations may have a shorter history than reliable long term stations used in climatological studies, but can effectively describe spatial patterns in temperatures across the urban landscape. Satellite data products like land surface temperature (LST) from the Moderate Resolution Imaging Spectroradiometer (MODIS) sensors offer 1-km spatial resolution data for areas around the globe up to four times daily \citep{huang2008}. Such products are systematically processed to remove inconsistencies and distortions, as well as to calculate usable temperature outputs. While these data can not currently offer predictive weather information, they are nonetheless useful for analyzing and describing spatial variation and patterns which, when combined with predictive models currently in use, can improve information to the public and the adaptive response.
+
+%To our knowledge, we are the first to consider spatial variability in the NWS heat warning system inside of the regional or county boundary, and the first to compare the National advisory system to estimated temperatures from thermal satellite imagery.
+
+\subsection{Investigations} \label{subsec:hypotheses}
+In this work we test two primary hypotheses. First, that measured data from local stations will exhibit the conditions for heat warnings at the same time and place as NWS forecasted warnings. We expect to find that the NWS advisories miss some instances where hazardous heat conditions are met at locations within counties. We will examine some of the characteristics of such locations, should they exist. 
+
+Second, we examine specific days where there is some evidence of extreme heat in either the NWS or surface station records. These days help describe whether estimates of near surface air temperatures at sub-county resolutions can improve the identification of hazardous thermal conditions. We investigate estimates derived from LST collected by satellites coupled with station measurements. We expect to find that LST and station records are well correlated, particularly on NWS-determined advisory days. This would suggest that satellite data may provide a means of identifying hazardous heat conditions where stations do not exist and at scales finer that forecast models. The findings from these tests are expected to improve the existing national heat warning system by demonstrating the need for sub-county specification that the current system misses and by providing evidence for how existing data sources could be used to complement the current NWS system. 
+
+
+\section{Methods}\label{section:methods}
+\subsection{Study Locations}\label{subsec:locations}
+This study focuses on two metropolitan areas in different climatic zones of the US: Atlanta, GA and Chicago, IL (see Figure \ref{fig:metros}) Atlanta is an inland city in the southeastern US (centered near 84.37 W, 33.74 N). Atlanta's historic downtown and central city are located primarily in Fulton County. A portion of the city sits in Dekalb County east of Fulton. Three other counties (two north and one south of the city) were included in the analysis to cover the core of the metropolitan area: Clayton, Cobb, and Gwinnett. Chicago is in the midwest and sits on the large water body of Lake Michigan (centered near 87.63 W, 41.89 N).  The City of Chicago sits within Cook County. Four surrounding counties (DuPage to the west, Lake, IL to the north, Will to the southwest, and Lake, IN to the southeast were also included in the analysis of the Chicago Metro area. 
+
+\subsection{Heat Advisory Data}\label{subsec:NWSdata}
+As the historical record of heat warnings, we used NWS-issued Heat Advisories and Excessive Heat Warnings. Text records of the statements issued by NWS stations are archived and maintained by the National Oceanic and Atmospheric Administration's (NOAA) National Climatic Data Center (NCDC). The data are stored in the Hierarchical Data Storage System (HDSS), which includes a tape robotics system for data archived on tape. NCDC provides direct online access to these data though the HDSS Access System (HAS). Weather statements were issued from two NWS stations responsible for the Atlanta (KFFC - Peachtree City-Falcon, GA) and Chicago (KLOT - Lewis University, IL) Metropolitan Areas. Specifically, recorded Heat Advisories and Excessive Heat Warnings are contained in Non-Precipitation Watches, Warnings, Advisories Bulletins (Bulletin ID WWUS7) and are accessible through the Service Records Retention System (SRRS) Text Products/Bulletin Selection interface (available at \url{http://has.ncdc.noaa.gov/pls/plhas/HAS.StationYearSelect}).
+
+Text file compilations of Bulletins were obtained for May 1-Sep 30 for the years 2006-2012. Individual text files were combed to identify mention of `HEAT' and further examined to determine the day-county to which Heat Advisories or Excessive Heat Warnings applied. 
+
+\subsection{Weather Station Data}\label{subsec:WUNDERdata}
+Measurements from weather stations serve as diagnostics of whether or not a hazardous heat event actually occurred for a given location and day. Two data sources were used for weather station data. First, temperature and humidity data from NCDC's Surface Data, Hourly Global (DS3505) data were obtained for Atlanta Hartsfield International Airport (USW00013874) and Chicago O'hare International Airport (USW00094846) from the NCDC website (\url{http://www.ncdc.noaa.gov/cdo-web/datasets/}). Second, Weather Underground, a commercial weather service provider, established a personal weather station network, which they use to inform their BestForecast\textsuperscript{\textregistered} system. The Weather Underground network allows individuals to share real-time weather information recorded by personal weather stations. The measurement intervals range between 1 and 60 minutes and differ by station. Temperature ($^{\circ}$F) and relative humidity (\%) from 64 stations in five counties in the Atlanta metro area and 144 stations in five counties in the Chicago metro area, were obtained from the Weather Underground website (\url{http://www.wunderground.com/} accessed in Sep-Oct 2013). Stations within the ten counties were queried for hourly temperature and humidity data back to May 2006. Since the Weather Underground network is continuously expanding, stations used in the analysis may differ from those assembled when this article is being read. 
+
+To control the quality of data and eliminate outliers, for each city, we removed observations beyond the range of mean $\pm$ five standard deviations. For each station, days with less than 16 hours valid hourly data and years with less than 75\% valid daily data were also excluded to eliminate possible sampling bias. The hourly average temperature and relative humidity values were processed to calculate the HI based on algorithms provided by the NWS (\url{http://www.hpc.ncep.noaa.gov/html/heatindex_equation.shtml}). To evaluate if stations experienced hazardous heat conditions, the NWS definition of Heat Advisory was used, such that if there are at least two consecutive days with at least one hourly HI greater than 105 $^{\circ}$F (40.6 $^{\circ}$C) in each day, these days were marked as heat wave days.
+
+\subsection{Land Surface Temperature Imagery}\label{subsec:MODISdata}
+The potential for regularly collected satellite data to provide more information on within-county variability in hazardous temperatures is examined through images from May through September 2011-2012 in the Atlanta and Chicago Metropolitan cores.  %We used MODIS imagery from both AQUA and TERRA satellites to produce estimates of average daily air temperatures following the methodology first described in Kloog 2012 \citep{kloog2012}.
+
+The daily 1 km land surface temperature (LST) data from MODIS aboard the National Aeronautics and Space Administration (NASA) Earth Observing System (EOS) Aqua and Terra satellite, labeled as MYD11\_A1 and MOD11\_A1, were obtained from the Goddard Space Flight Center (\url{http://ladsweb.nascom.nasa.gov}). We extracted the LST parameter ``LST\_Day\_1km" and ``LST\_Night\_1km" at 1x1 km spatial resolution in 2012 over Atlanta and Chicago. Retrievals with quality flag as ``fair consistency" and ``good consistency" were included in the following analyses. The monthly MODIS normalized difference vegetation index (NDVI) 1 km data (MOD13\_A3) in 2012 were obtained from the Goddard Space Flight Center (\url{http://ladsweb.nascom.nasa.gov}) and extracted. 
+
+To integrate the air temperature measurements, spatial predictors, and LST retrievals, we projected all the data to the MODIS Sinusoidal Grid. Each Weather Underground station was assigned to the LST pixels of the same grid cell. The NDVI value, average elevation value, and percent impervious area value were constructed based on the same grid. 
+
+Following a published methodology \citep{kloog2012} we developed a mixed model to estimate the daily average air temperature from LST retrievals.The model consisted of daily specific random intercepts and random LST slopes as follows:
+
+\begin{equation}
+\begin{split}
+AT_{ij} = \beta_0 + u_j + (\beta_1 + v_j)LST_{ij} + \beta_2elev_i + \beta_3impervPCT_i + \beta_4NDVI_{ij} + e_{ij}  \sim (0,\sigma^2) \\ 
+(u_j, v_j) \sim (\boldsymbol{0,\Sigma})
+\end{split}
+\label{eq:model}
+\end{equation}
+
+Where AT$_{ij}$(F) is the measured air temperature in a grid cell i on a day j; $\beta_0$ denotes the fixed intercept; u$_j$ denotes the day-specific random intercept, $\beta_{1-4}$ are the fixed slopes of LST, elev, impervPCT, and NDVI, respectively; v$_j$ is the day-specific random slope of LST; LST$_{ij}$ is the land surface temperature retrieval in the grid cell i on the day j; impervPCT$_i$ is the percent of impervious area in the grid cell i; NDVI$_{ij}$ is the monthly NDVI value in grid cell i for the month in which day j falls; elev$_{i}$ (meters) is the mean elevation in the grid cell i; and e$_{ij}$ is the error term in the grid cell i on the day j.
+
+We also considered wind speed as a predictor in the model; however, preliminary results indicated that it was not significant thus we removed it from the model. We used both day and night LST retrievals from both Terra and Aqua satellite as the predictors and evaluated the model performance respectively. The average night LST was selected as the predictor in the final model because it provides the highest accuracy and greatest coverage. The average night LST is defined as the night LST from Aqua or the night LST from Terra if only one of them are available; if both Aqua and Terra night LST are available, the average night LST is the mean of these two values. Five-fold cross validation (CV) was used to validate our model performance. We randomly divided the data into a training dataset (80\%) and a testing dataset (20\%) and then made predictions for testing dataset using the model fitted from the training dataset. The model was trained and tested for five times by different training and testing datasets to ensure that each data point ends up in the testing dataset exactly once. This process was repeated for 1,000 times and the root mean-square prediction errors (RMSPE) and R$^2$ were reported to estimate the model prediction precision. The RMSPE was calculated as follows:
+
+\begin{equation}
+RMSPE =  \sqrt{\sum_{i=1}^{N} \frac{(P_i - O_i)^2}{N}}
+\label{eq:error}
+\end{equation}
+where N is the number of observations, P$_{i}$ and O$_{i}$ are the i$^{th}$ predicted and observed value, respectively. 
+
+\section{Results}\label{section:results}
+\subsection{Data Descriptions}\label{subsec:descriptions}
+Among records from the airport and Weather Underground weather stations from May-Sep 2006-2012 there are 26,943 and 70,312 valid station-day data records in total for Atlanta and Chicago, respectively, and 1,172 and 1,499 station-days were marked as heat wave days. This is 4.3\% of daily observations meeting Heat Advisory conditions in Atlanta and 2.14\% in Chicago. In the years 2011 and 2012 there was far less missing data among stations. In these years there were 14,086 and 34,347 observations with 694 (4.9\%) and 1,143 (3.3\%) station-days exceeded Heat Advisory Criteria. 
+
+Both 2011 and 2012 featured several NWS Heat Advisories in the two metro regions. Several years prior featured no NWS-issued Heat Advisories for the core metro counties. In Atlanta 2006, 2008, and 2009 had no Advisories, and in the Chicago counties 2006-2008 were without Heat Advisories (see Figure \ref{fig:advisories}). In Atlanta, Heat Advisories were mostly applied to the five counties in the core metro area uniformly. That is, on days for which an Advisory was issued it was applied to all counties. In only three instances Clyton county was issued a warning when other counties were not. In 2011 there were two Heat Advisories in each month of July and August, and in 2012 there were four concurrent Advisories that spanned June and July. In Chicago there was more variability in issuing NWS Advisories, particularly in July of 2011. In that month both Cook and DuPage Counties were issued six Advisories, Lake, Illinois had four, and both Lake, Indiana and Will County experienced eight. All five Chicago area counties experienced the same number of Advisories in other months: one in August 2011, two in June 2012, and seven in July 2012. 
+
+The majority of the Wunderground Stations are found on 'developed' land cover of some type. Of Atlanta's 57 stations, most were located on high-, medium-, low-intensity and open space developed land. Only 9 stations were located on land covers not considered developed (four evergreen forest, four deciduous forest, and one woody wetlands). In Chicago 10 of the 137 (7.3\%) stations were found on land covers other than some form of 'developed'. All of Cook County's 44 stations are found on low-, medium-, or high intensity developed land.   
+
+\subsection{Comparing NWS and Station Data}\label{subsec:hyp1}
+
+To test the agreement of hazardous heat conditions at stations with the NWS Advisories, we treated the station measurements as the diagnostic gold standard against which the NWS notifications were compared. A false negative test, thus, describes an instance in which the daily heat index measured at the station met the criteria for a Heat Advisory without an official NWS-issued Advisory. In both metro areas the average number of false negatives and false positives differed significantly from perfect agreement (see Tables \ref{tab:ATLstats} and \ref{tab:CHIstats}). This was true for both 2011 and 2012 and across different land covers for which there were more than 10 examples. 
+
+The average number of false positives per station per year in Chicago (4.80) was much higher than the average number of false negatives (1.96), which was slightly less than the number of true positive days where stations and NWS notifications agreed (2.92).  While in Atlanta, the average number of false positives (1.98) was much lower than the number of false negatives per station (5.28), both of which were greater than the days/year of station-NWS agreement (1.87). The results suggest that the NWS-issued Heat Advisories in Chicago covered many instances when hazardous conditions were never reached at stations, and in Atlanta the Advisories were more likely to miss instances of hazardous conditions at specific locations. Some stations in each metro area exhibited a high degree of disagreement between stations and the NWS (see Figure \ref{fig:FalsePosNeg}); however no pattern related to land cover or location emerged to explain these variations. 
+
+\subsection{Comparing Imagery and Temperatures}\label{subsec:LST}
+Three specific categories of summer days were investigated more closely in each metro area using satellite data on LST. These categories were identified using the NWS Heat Advisory status and general trends among the metro's weather stations. In Atlanta, for example on July 1, 2012 NWS issued a Heat Advisory for all five counties in the metro area and nearly all of the stations (87.7\%) met the conditions for the Advisory. An NWS Advisory was also issued on June 29, 2012; however only about half (47.4\%) of stations met Advisory conditions. In the third case, on July 25, 2012 just under half (48.3\%) of the stations exhibited Advisory conditions but no NWS Heat Advisory was issued. In Chicago July 6, 2012 was a NWS Heat Advisory with agreement from 93.8\% of stations. July 17, 2012 was another NWS Heat Advisory, but with only 42.1\% of stations in agreement. Finally, July 2, 2012 was an example of several stations (49.6\%) exhibiting Advisory conditions without a NWS-issued Advisory. 
+
+We examined these six days in detail using MODIS imagery to produce estimated daily mean air temperatures. Our mixed effects model with the average night LST as the predictor and average daily air temperature as the dependent variable fits the dataset well and provides high prediction precision. For the model fittings, the R$^2$ is 0.71 and 0.74 in Chicago and Atlanta, respectively. For the five-fold CV, the R$^2$ and RMSPE is 0.697 and 1.92$^{\circ}$F in Chicago, respectively; and the R$^2$ and RMSPE is 0.711 and 1.75$^{\circ}$F in Atlanta, respectively. We used this model to predict the mean daily temperature over Chicago and Atlanta on three typical days, respectively.  
+
+In both metro areas, the days on which there was high agreement between stations and NWS had higher estimated air temperatures (see Figure \ref{fig:LSTairTemps} panels A and B). Even when there was daily disagreement among stations (panels C-F), the estimated temperatures on NWS Heat Advisory days (panels C and D) are higher than on days when there was no Advisory (panels E and F). The results support merits of each dataset: the NWS Advisories appear to correspond to higher regional temperatures as estimated from LST, and station data help to identify specific locations of hazardous heat, particularly on days when no NWS Heat Advisory is issued. 
+
+\section{Discussion}\label{section:discussion}
+
+This work describes some fundamental characteristics of the NWS warning system for heat. The NWS system does well capturing regional weather movements which result in hazardously warm weather, and it delivers early information to large populations. This work highlights, how the NWS lacks the spatial precision to inform more carefully targeted interventions which could save lives during regional heat events. The broad applicability of the NWS Heat Advisories and Warnings leads them to warn of the existence of hazardous heat conditions for places on summer days when such conditions are not present, and to miss several instances of hazardous conditions in metro areas on days for which regional weather patterns may not trigger a warning. This work used relatively new, and quickly growing, datasets like unregulated, and non-centralized weather stations as well as daily satellite imagery to demonstrate how the coverage and resolution of heat conditions within metro areas may be better represented and studied.  
+
+Moving forward, increased attention should be devoted to uncovering the drivers of non-NWS Advisory hot spots with urban areas. The existence and mechanisms of the urban heat island are well understood, but largely considered only by research and science communities, rather than local planning entities. The existence of datasets, like those used in this study, present the opportunity for cities to understand and identify where and how local topography, climate, and demographics interact to create elevated climate-related health risks.  One example of such practice already being adopted is with Chicago's Sustainability Office and their use of Landsat imagery to identify hotspots, which then serve as an inventory of priority locations for new green infrastructure investments (\url{http://news.satimagingcorp.com/2006/10/chicago_uses_satellite_images_to_determine_citys_true_hot_spots.html}) \citep{chicago} . 
+
+The opportunities to improve the existing NWS early warning system are considerable, particularly given the growing number of networked weather stations within urban areas. The Wunderground network of stations is but one of several sites aggregating information from such distributed environmental monitoring systems. Weather Bug is another which was used in the original study using MODIS data to generate a surface of estimated air temperatures \citep{kloog2012}. The ability of imagery to provide increased coverage and resolution for urban temperatures continues to be explored and improved \citep{voogt2003}. New processing techniques, such as those used here, which combine remotely sensed thermal data with in-situ temperature readings offer the potential for cities to obtain recurring descriptions of intra-urban temperature variation. Patterns that emerge from examining the urban thermal environmental over years could help improve public expenditures for reducing the urban heat island, for example by increasing green space. These investments can be important parts of municipal strategies to combat climate change and improve quality of life through the multiple co-benefits that such strategies offer \citep{patz2008}. 
+
+Warning systems for natural hazards have improved most for non-heat-related threats \citep{sorensen}. For example, in 2007 the NWS has developed storm-based warnings for tornados as an alternative to countywide warnings. New data sources can improve precision of heat modeling and forecasting in metropolitan areas, and may help with the reception of warning messages. This is particularly true as more of the public obtain weather information through interactive displays and interfaces. Compared with message delivery via radio, or static maps, meteorological information is increasingly made available on location-smart devices and with animated visualizations of weather conditions describing recent historic and near future weather conditions with improved precision \citep{cellphones, casteel}. As users become used to this form of weather information, more specific forecasts of local heat can improve individual response and public trust of warnings \citep{savelli}. The location- and time- specific information available from such networks can also be paired with mobile technology to provide targeted warnings to subscribers within a certain distance of stations when they are exhibiting hazardous conditions. Mobile weather applications are already beginning to use location-aware devices' abilities to improve information delivery and some, such as Weather Underground's mobile app, allow users to provide 'Hazard Reports' for their current location to crowdsource information on conditions such as power outages, road closures, and flooding. 
+
+In our analysis we found the estimated air temperatures produced from combining LST with station observations to capture the general patterns also described by the NWS warning classification, we do not find it to capture all of the nuance of the station data. This may be due to the inability of LST-produced estimates to reflect the importance of humidity in determining human health risk, as is accomplished with a heat index-like factor. In all cases (the six days examined) there was no significant difference in estimated mean temperature between pixels with stations exhibiting Advisory-like conditions and for those with stations measuring heat index values below 105$^\circ$F. This perhaps suggests the importance of investigating methods for estimating heat index from satellite imagery sources, for validating the station measurements more thoroughly, and for examining the importance of local drivers of humidity.
+
+We limited our analysis because we believed the 2011-2012 Wunderground weather station data to be more complete than earlier years we investigated. For Atlanta, the fraction of daily observations exhibiting hazardous conditions was similar between the 7 year (4.3\%) and the 2 year (4.9\%)  datasets. For Chicago the fractions were more divergent - 2.1\% for 2006-2012 and 3.3\% for only 2011 and 2012 - however we noticed that the 2006-2010 contained less hazardous heat weather in all datasets (NWS and Wunderground). Though we collected data from a number of years that were not used in the analysis, we expect that our findings are not anomalous in their description of the agreement between NWS and weather station measurements.
+
+\section{Conclusion}\label{section:conclusion}
+Records from individual weather stations show that the conditions for hazardous heat exposures exist for many locations within counties, even when the forecasted conditions do not call for issued warnings applied to the county. Further analysis of larger, longterm datasets is needed to produce a more robust understanding of the interaction of regional weather and local land cover conditions that combine to produce hazardous conditions at specific locations within counties. These factors likely change with time of year and metro area being considered. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACKNOWLEDGMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\acknowledgments
+%Start acknowledgments here.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDIXES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Use \appendix if there is only one appendix.
+%\appendix
+
+% Use \appendix[A], \appendix}[B], if you have multiple appendixes.
+%\appendix[A]
+
+%% Appendix title is necessary! For appendix title:
+%\appendixtitle{}
+
+%%% Appendix section numbering (note, skip \section and begin with \subsection)
+% \subsection{First primary heading}
+
+% \subsubsection{First secondary heading}
+
+% \paragraph{First tertiary heading}
+
+%% Important!
+%\appendcaption{<appendix letter and number>}{<caption>} 
+%must be used for figures and tables in appendixes, e.g.,
+%
+%\begin{figure}
+%\noindent\includegraphics[width=19pc,angle=0]{figure01.pdf}\\
+%\appendcaption{A1}{Caption here.}
+%\end{figure}
+%
+% All appendix figures/tables should be placed in order AFTER the main figures/tables, i.e., tables, appendix tables, figures, appendix figures.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REFERENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make your BibTeX bibliography by using these commands:
+\bibliographystyle{ieeetr}
+\bibliography{vargoLiu_MS}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Enter tables at the end of the document, before figures.
+%%
+%
+%\begin{table}[t]
+%\caption{This is a sample table caption and table layout.  Enter as many tables as
+%  necessary at the end of your manuscript. Table from Lorenz (1963).}\label{t1}
+%\begin{center}
+%\begin{tabular}{ccccrrcrc}
+%\hline\hline
+%$N$ & $X$ & $Y$ & $Z$\\
+%\hline
+% 0000 & 0000 & 0010 & 0000 \\
+% 0005 & 0004 & 0012 & 0000 \\
+% 0010 & 0009 & 0020 & 0000 \\
+% 0015 & 0016 & 0036 & 0002 \\
+% 0020 & 0030 & 0066 & 0007 \\
+% 0025 & 0054 & 0115 & 0024 \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+
+
+\begin{table}
+\caption{Chicago weather station details on the number of normal ('Norm') and 'Heat' days during the summer of 2011 and 2012.  The total number of false positives and false negatives are also provided to give an idea of the agreement between the station and the NWS Advisories for that county.}
+\begin{center}
+\begin{tabular}{c}
+\includegraphics[totalheight=0.6\textheight]{../../images/stations_table_ATL.pdf} 
+\end{tabular}
+\label{tab:ATLstats}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\caption{Chicago weather station details on the number of normal ('Norm') and 'Heat' days during the summer of 2011 and 2012.  The total number of false positives and false negatives are also provided to give an idea of the agreement between the station and the NWS Advisories for that county.}
+\begin{center}
+\begin{tabular}{c}
+\includegraphics[totalheight=0.71\textheight, angle=90]{../../images/stations_table_CHI.pdf} 
+\end{tabular}
+\label{tab:CHIstats}
+\end{center}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Enter figures at the end of the document, after tables.
+%%
+%
+%\begin{figure}[t]
+%  \noindent\includegraphics[width=19pc,angle=0]{figure01.pdf}\\
+%  \caption{Enter the caption for your figure here.  Repeat as
+%  necessary for each of your figures. Figure from \protect\citep{Knutti2008}.}\label{f1}
+%\end{figure}
+
+\begin{center}
+\begin{figure}[t]
+ \includegraphics[totalheight=0.38\textheight]{../../images/metros.pdf}
+  \caption{The five-county study areas of Chicago (left) and Atlanta (right) are shown. Weather stations (including the airport stations) are shown with dotted circles.}
+   \label{fig:metros}
+\end{figure}
+\end{center}
+
+
+\begin{center}
+\begin{figure}[t]
+ \includegraphics[scale=0.84]{../../images/advisories.pdf}
+  \caption{Recorded National Weather Service Heat Advisories are shown (black) for May-September 2006-2012 by county.}
+   \label{fig:advisories}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[t]
+ \includegraphics[totalheight=0.57\textheight]{../../images/FalsePosNeg.pdf}
+  \caption{Stations are shown presented by the number of false positive and negative instances in 2011 and 2012. The National Land Cover Dataset's (NLCD) 2011 land cover classification scheme is included. A false negative means station conditions exceeded Heat Advisory Criteria with no such Advisory issued from NWS. A false positive is when Heat Advisory conditions at the station were not met despite NWS issuing an Advisory.}
+   \label{fig:FalsePosNeg}
+\end{figure}
+\end{center}
+
+
+\begin{center}
+\begin{figure}[t]
+ \includegraphics[totalheight=0.57\textheight]{../../images/sixmaps.pdf}
+  \caption{Air temperatures modeled from Land Surface Temperature data from MODIS satellites is shown with station-measured heat index data with varying levels of agreement between NWS Heat Advisory status and station conditions. }
+   \label{fig:LSTairTemps}
+\end{figure}
+\end{center}
+
+
+\end{document}
